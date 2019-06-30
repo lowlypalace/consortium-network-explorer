@@ -1,7 +1,3 @@
-:root {
-    --nano-blue: #2c3e50;
-  }
-  
   .text-monospace {
     font-family: "Roboto Mono", SFMono-Regular, Menlo, Monaco, Consolas,
       "Liberation Mono", "Courier New", monospace !important;
