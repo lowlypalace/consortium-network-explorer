@@ -19,6 +19,10 @@
     },
     {
       "nodeUrl": "https://testapla.anzuev.ru:443/api/v2",
+      "nodeName": "Grant Thornton Node"
+    },
+    {
+      "nodeUrl": "https://testapla.anzuev.ru:443/api/v2",
       "nodeName": "Other Node"
     }
   ]
