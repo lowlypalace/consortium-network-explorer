@@ -1,31 +1,38 @@
 <!doctype html>
 <html lang="en">
-   <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <!-- Bootstrap CSS -->
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-      <link rel="stylesheet" href="/styles/App.css">
-      <title>Consortium Network Explorer</title>
-   </head>
-   <body>
-    <div id="App">
-      <div id="Content">
-         <div class="row justify-content-center my-5 mx-0">
-            <div class="col col-md-8">
-               <h1><span>Consortium Network Explorer</span></h1>
-               <hr>
-               <form class="my-5" action="/" method="post" >
-                  <label><span>Enter a transaction hash to get started.</span></label>
-                  <div class="form-row">
-                     <div class="col-md"><input type="text" name="value" class="ValidatedSearch form-control form-control-lg " placeholder="Search" pattern ="[0-9a-f]{64}" title="Please enter a transaction hash" value=""></div>
-                     <div class="col-auto mt-2 mt-md-0"><button type="submit" class="btn btn-nano-primary btn-lg"><span>Search</span></button></div>
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="/styles/App.css">
+   <title>Consortium Network Explorer</title>
+</head>
+
+<body>
+   <div id="Content">
+      <div class="row justify-content-center my-5 mx-0">
+         <div class="col col-md-7 container">
+            <h1><span>Consortium Network Explorer</span></h1>
+            <hr>
+            <form class="my-5" action="/" method="post">
+               <label><span>Enter a transaction hash to get started.</span></label>
+               <div class="form-row ">
+                  <div class="col-12 col-md-10"><input type="text" name="value" id="icon" class="search-form"
+                        placeholder="Search" pattern="[0-9a-f]{64}" title="Please enter a transaction hash" value="">
                   </div>
-               </form>
-            </div>
+                  <div class="col-12 col-md-2"><button type="submit" class="btn-search"><span>Search</span></button>
+                  </div>
+               </div>
+            </form>
          </div>
       </div>
-    </div>
-   </body>
+      <div class="footer-copyright text-center py-3">Powered by
+         <a href="https://apla.io">Apla</a>, 2019
+      </div>
+   </div>
+</body>
+
 </html>
