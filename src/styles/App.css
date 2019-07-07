@@ -17,7 +17,7 @@ body {
   /* Headings */
 
 h1 {
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -25,7 +25,7 @@ h1 {
 }
 
 h2 {
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
@@ -33,7 +33,7 @@ h2 {
 }
 
 h3 {
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -41,7 +41,7 @@ h3 {
 }
 
 h4 {
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -55,23 +55,23 @@ h4 {
 
 .btn-search {
   width: 100%;
-  height: 40px;
+  height: 50px;
   color: #ffffff;
   background-color: #455dee;
   border-radius: 4px;
   font-weight: 500;
-  font-size: 15px;
-  line-height: 19px;
+  font-size: 16px;
+  line-height: 50px;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   outline: none;
 }
 
 #icon {
-  padding-left: 35px;
-  background-image: url("../img/search.png");
+  padding-left: 50px;
+  background-image: url("../img/search.svg");
   background-repeat: no-repeat;
-  background-position: center left 8px;
-  background-size: 15px;
+  background-position: center left 15px;
+  background-size: 20px;
 }
 
 .btn-search:hover {
@@ -93,19 +93,18 @@ outline: none;
 }
 
 .search-form {
-  background: #ffffff;
   border: 1px solid #e7e7e7;
   box-sizing: border-box;
   border-radius: 4px;
   width: 100%;
-  height: 40px;
-  font-size: 14px;
+  height: 50px;
+  font-size: 16px;
   color: #172B4D;
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
   padding: 8px 6px;
   margin-right: 5px;
   box-shadow: none;
-  background-color: #ffffff;
+  background: #ffffff;
   outline: none;
 }
 
