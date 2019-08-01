@@ -7,7 +7,11 @@
     "apla-blockchain-tools": "^2.0.0",
     "body-parser": "^1.19.0",
     "ejs": "^2.6.2",
-    "express": "^4.17.1",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-ejs": "^4.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static-server": "^1.4.0",
     "node-fetch": "^2.2.0"
   },
   "devDependencies": {

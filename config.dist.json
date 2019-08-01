@@ -1,0 +1,25 @@
+{
+  "port": "3000",
+
+  "network": {
+    "networkId": 3201,
+    "privKey": "0820f58566c3bdb41eac85e283f4e2d17e2512beb485bcd72f4fac3c268659af",
+    "table": "hash_registry",
+    "column": "ext_hash_name"
+  },
+
+  "nodes": [
+    {
+      "nodeUrl": "https://xreg-minicn0.apla.io:7079/api/v2",
+      "nodeName": "Apla Consensus ASBL"
+    },
+    {
+      "nodeUrl": "https://xreg-minicn1.apla.io:7079/api/v2",
+      "nodeName": "EGAAS S.A."
+    },
+    {
+      "nodeUrl": "https://xreg-minicn2.apla.io:7079/api/v2",
+      "nodeName": "Nepal Institute of Directors"
+    }
+  ]
+}

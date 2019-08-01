@@ -6,3 +6,4 @@ package-lock.json
 
 #ignore .idea
 .idea/
+config.json

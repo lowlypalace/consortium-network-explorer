@@ -1,42 +1,71 @@
-const express = require("express");
+const Koa = require("koa");
+const Router = require("koa-router");
+const bodyParser = require('koa-body');
+const serve = require('koa-static-server');
+const render = require("koa-ejs");
+const path = require("path");
 
-let bodyParser = require("body-parser");
-let asyncMiddleware = require('./utils/asyncMiddleware');
-let lib = require("./lib");
-let data = require("./config");
 
-const app = express();
-const port = data.node_port;
+let {checkValue} = require("./lib");
+let {nodes, port} = require("./config");
 
-// create application/x-www-form-urlencoded parser
-let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-// setting ejs as a template engine
-app.set("view engine", "ejs");
+const app = new Koa();
+const router = new Router();
 
-app.use(express.static(__dirname + "/src"));
+
+// error handling
+app
+    .use(bodyParser())
+    .use(async (ctx, next) => {
+        try {
+            await next()
+        } catch (err) {
+            console.err(err);
+            ctx.response.status = 500;
+            ctx.response.body = {"err": true, "message": "Error occurred while it was processing"}
+        }
+    })
+    .use(router.routes())
+    .use(router.allowedMethods())
+    .use(serve({
+        rootDir: "src"
+    }));
+
+
+render(app, {
+    root: path.join(__dirname, 'views'),
+    viewExt: 'ejs',
+    cache: false,
+    debug: false,
+    layout: false
+});
+
 
 //get requests, serves index.js page
-app.get("/", (req, res) => res.render("index"));
+router.get("/", async (ctx) => ctx.render("index", {layout: false}));
 
 //post requests, serves list.js page
-app.post("/", urlencodedParser, asyncMiddleware(async (req, res, next) => {
-  let value = req.body.value;
+router.post("/", async (ctx) => {
+    let valueToCheck = ctx.request.body.value;
 
-  let result = await Promise.all(
-    data.nodes.map(async currentObject => {
-      return {
-        nodeName: currentObject.nodeName,
-        nodeStatus: await lib.checkValue(
-          currentObject.nodeUrl,
-          currentObject.nodeName,
-          value
-        )
-      };
-    })
-  );
+    let result = await Promise.all(nodes.map(async (node) => {
+        let {nodeName, nodeUrl} = node;
+        try {
+            return {
+                "nodeName": nodeName,
+                "nodeStatus": await checkValue(nodeUrl, valueToCheck)
+            }
+        }catch (e) {
+            return {
+                "nodeName": nodeName,
+                "error": "Not Available"
+            }
+        }
 
-  res.render("list", { value, result });
-}));
+    }));
+    //console.log(result);
+    await ctx.render("list", {value: valueToCheck, result: result});
+});
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
