@@ -21,7 +21,6 @@ app
         try {
             await next()
         } catch (err) {
-            console.err(err);
             ctx.response.status = 500;
             ctx.response.body = {"err": true, "message": "Error occurred while it was processing"}
         }
@@ -29,7 +28,7 @@ app
     .use(router.routes())
     .use(router.allowedMethods())
     .use(serve({
-        rootDir: "src"
+        rootDir: "public"
     }));
 
 
@@ -43,29 +42,36 @@ render(app, {
 
 
 //get requests, serves index.js page
-router.get("/", async (ctx) => ctx.render("index", {layout: false}));
+router.get("/", async (ctx) => {
+    let {ids} = ctx.request.query;
 
-//post requests, serves list.js page
-router.post("/", async (ctx) => {
-    let valueToCheck = ctx.request.body.value;
-
-    let result = await Promise.all(nodes.map(async (node) => {
-        let {nodeName, nodeUrl} = node;
-        try {
-            return {
-                "nodeName": nodeName,
-                "nodeStatus": await checkValue(nodeUrl, valueToCheck)
+    if(!ids){
+        await ctx.render("index", {result: []});
+        return;
+    }
+    ids = ids.split(",");
+    let result = [];
+    for (let id of ids){
+        let txResult = await Promise.all(nodes.map(async (node) => {
+            let {nodeName, nodeUrl} = node;
+            try {
+                return {
+                    "nodeName": nodeName,
+                    "nodeStatus": await checkValue(nodeUrl, id)
+                }
+            }catch (e) {
+                return {
+                    "nodeName": nodeName,
+                    "error": "Not Available"
+                }
             }
-        }catch (e) {
-            return {
-                "nodeName": nodeName,
-                "error": "Not Available"
-            }
-        }
-
-    }));
-    //console.log(result);
-    await ctx.render("list", {value: valueToCheck, result: result});
+        }));
+        result.push({
+            txHash: id,
+            txResult
+        })
+    }
+    await ctx.render("index", {result});
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}`));

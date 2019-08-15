@@ -3,7 +3,7 @@
 
   "network": {
     "networkId": 3201,
-    "privKey": "0820f58566c3bdb41eac85e283f4e2d17e2512beb485bcd72f4fac3c268659af",
+    "privKey": "0820f58566c3bdb41eac85e283f4e2d17e2512beb485bcd72f4fac3c268659a3",
     "table": "hash_registry",
     "column": "ext_hash_name"
   },
